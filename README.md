@@ -1,7 +1,7 @@
 # NCBI taxonomic classifications from NCBI accession numbers (acc2taxo)
 
 ## Description
-This Python script `acc2taxo.py` retrieves NCBI taxonomic information associated with a list of accession numbers in a text file. It generates a table with the NCBI taxonomic classification of each accession number. It can also generate a file containing the NCBI taxonomy tree for the retrieved taxids.
+This Python script `acc2taxo.py` retrieves NCBI taxonomic information associated with a list of accession numbers in a text file. It generates a table with the NCBI taxonomic classification of each accession number. It can also generate a file containing the NCBI taxonomy tree corresponding to the retrieved taxids.
 
 ## Usage
 The script can be executed from the command line as follows:
@@ -66,4 +66,4 @@ Taxallnomy website (http://bioinfo.icb.ufmg.br/taxallnomy/) - to get the ordered
 
 ___
 
-This script was written by the team at DM de Vienne in March 2023.
+This script was written by DM de Vienne in March 2023. 
