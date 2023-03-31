@@ -34,7 +34,7 @@ parser.add_argument('--updatetaxodb', action='store_true', default=False, help='
 parser.add_argument('-t', '--tree', type=str, required=False,
                     help='If associated to a file name (-t filename), the ncbi taxonomy tree will be build and written to the specified file')
 parser.add_argument('--verbose', action='store_true', default=True, help='Verbose mode (True/False). Default to True.')
-parser.add_argument('-v', '--version', action='version', version='%(prog)s 0.1')
+parser.add_argument('-v', '--version', action='version', version='%(prog)s 1.0')
 
 args = parser.parse_args()
 VERB = args.verbose
