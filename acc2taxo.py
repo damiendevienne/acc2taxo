@@ -17,6 +17,8 @@ import pandas as pd
 import time
 import sys
 
+start_time = time.time()
+
 
 parser = argparse.ArgumentParser(description='Reads a file with accession numbers in rows and returns a table with NCBI taxid information for each.')
 parser.add_argument('-i', '--input', type=str, required=True,
@@ -135,5 +137,6 @@ if (args.tree!=None): #we get and write the tree file
 	if VERB: print("done")
 
 
-if VERB: print("END")
+if VERB: 
+	print("END (in %s seconds)" % round((time.time() - start_time),3))
 
