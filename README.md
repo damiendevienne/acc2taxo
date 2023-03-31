@@ -1,28 +1,27 @@
-# NCBI taxonomic classification from each accession numbers
+# NCBI taxonomic classifications from NCBI accession numbers (acc2taxo)
 
 ## Description
-This Python script retrieves NCBI taxonomic information associated with a list of accession numbers in a text file. It generates a table with the NCBI taxonomic classification of each accession number. It can also generate a file containing the NCBI taxonomy tree for the retrieved taxids.
+This Python script `acc2taxo.py` retrieves NCBI taxonomic information associated with a list of accession numbers in a text file. It generates a table with the NCBI taxonomic classification of each accession number. It can also generate a file containing the NCBI taxonomy tree for the retrieved taxids.
 
 ## Usage
 The script can be executed from the command line as follows:
 
 
 ```shell
-python3 ncbi_taxonomy.py -i input_file.txt -o output_file.txt [OPTIONS]
+python3 acc2taxo.py -i input_file.txt -o output_file.txt [OPTIONS]
 ```
 
-## Arguments
 The following options are available:
 
 - `-i/--input`: the input file containing one accession number per line (required)
 - `-o/--output`: the output file name (required)
 - `-db/--database`: the queried NCBI database (default is "protein")
 - `--sep`: the column separator for the output table (default is ",")
-- `--clean`: whether to remove empty ranks in the final table (default)
-- `--no-clean`: whether to not remove ranks in the final table (overrides `--clean`)
-- `--updatetaxodb`: whether to update the local NCBI taxonomy database (default is False)
-- `-t/--tree`: if associated with a file name, the NCBI taxonomy tree will be built and written to the specified file
-- `--verbose`: whether to enable verbose mode (default is True)
+- `--clean`: remove empty ranks in the final table (default)
+- `--no-clean`: keep all ranks in the final table (overrides `--clean`)
+- `--updatetaxodb`: update the local NCBI taxonomy database. Must be set when first using the script.Takes about 50 seconds to complete 
+- `-t/--tree`: (optional) the file name where to write the NCBI taxonomy tree corresponding to the list of retrieved taxids
+- `--verbose`: enable verbose mode (default)
 - `-v/--version`: print the version of the script
 
 
@@ -42,6 +41,9 @@ The script proceeds in two (optionnaly three) steps:
 1. Get taxids from accession numbers: reads the input file, retrieves the taxid associated with each accession number from the NCBI eutils API. Note that the script automatically pauses for 0.5 seconds between each eutils API query to comply with NCBI's requirements (max 3 queries/second without a key).
 2. Get infos from taxids: retrieves the lineage and names of each taxid from the NCBI taxonomy database.
 3. (optional) Get the tree from the list of unique taxids retrieved in step 2.
+
+## Example
+
 
 ## Planned Improvements
 The following improvements are planned for future releases:
