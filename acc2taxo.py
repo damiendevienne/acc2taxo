@@ -61,7 +61,7 @@ def gettaxidsfromids(ids, chunk_size,db):
 			acc = data['result'][uid]['accessionversion']
 			tid = data['result'][uid]['taxid']
 			RES.append([acc,tid])
-		time.sleep(0.5)
+		time.sleep(0.34)
 	if VERB : print(' done')
 	return(RES)
 
