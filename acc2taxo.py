@@ -21,14 +21,18 @@ import sys
 parser = argparse.ArgumentParser(description='Reads a file with accession numbers in rows and returns a table with NCBI taxid information for each.')
 parser.add_argument('-i', '--input', type=str, required=True,
                     help='A file with one accession number per line')
-parser.add_argument('-o', '--output', type=str, required=False,
+parser.add_argument('-o', '--output', type=str, required=True,
                     help='The output file name')
 parser.add_argument('-db', '--database', type=str, default="protein",
                     help='The queried NCBI database. Default to \'protein\' (protein database)')
 parser.add_argument('--sep', type=str, default=",",
                     help='Column separator for the output table. Default to \',\'')
-parser.add_argument('--clean', action='store_true', default=True, help='Should empty rank columns be removed. Default to True')
+parser.add_argument('--clean', dest='clean', action='store_true', help='Empty ranks are removed in the final table')
+parser.add_argument('--no-clean',  dest='clean', action='store_false', help='Empty ranks be kept in the final table')
+parser.set_defaults(clean=True)
 parser.add_argument('--updatetaxodb', action='store_true', default=False, help='Should the local NCBI taxonomy database be updated first. Default to False because may take some time (minute). Automatically set to True if no database is found locally (first time using this code for example).')
+parser.add_argument('-t', '--tree', type=str, required=False,
+                    help='If associated to a file name (-t filename), the ncbi taxonomy tree will be build and written to the specified file')
 parser.add_argument('--verbose', action='store_true', default=True, help='Verbose mode (True/False). Default to True.')
 parser.add_argument('-v', '--version', action='version', version='%(prog)s 0.1')
 
@@ -42,7 +46,7 @@ VERB = args.verbose
 
 # Function that iteratively takes a collection of chunk_size ids and returns acc and taxid
 def gettaxidsfromids(ids, chunk_size,db): 
-	if VERB : print("Querying " + args.database, "database", end="")
+	if VERB : print("Querying " + db + "database", end="")
 	RES = []
 	for i in range(0, len(ids), chunk_size):
 		if VERB : print('.', end="", flush=True)
@@ -112,12 +116,24 @@ def WriteFinalTab(dataframe, outfilename):
 		if VERB: print("Writing to standard output...", end="")
 		df.to_csv(sys.stdout, index=False)
 	else:
-		if VERB: print("Writing to file " + outfilename + "...", end="")
+		if VERB: print("Writing table to file \'" + outfilename + "\'...", end="")
 		df.to_csv(args.output, index=False)
 	if VERB: print("done")
 
 #writing
 WriteFinalTab(df, args.output)
+
+#checking if tree should be build and written, and do it
+if (args.tree!=None): #we get and write the tree file
+	#get list of unique taxids
+	if VERB: print("Building the taxonomy tree...", end="")
+	alluniquetaxids = list(set(df['taxid']))
+	tree = ncbi.get_topology(alluniquetaxids)
+	if VERB: print("done")
+	if VERB: print("Writing tree to file \'" + args.tree + "\'...", end="")
+	tree.write(format=8, outfile=args.tree) 
+	if VERB: print("done")
+
 
 if VERB: print("END")
 
