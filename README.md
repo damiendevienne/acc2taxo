@@ -70,7 +70,7 @@ Generates a table, whose first columns and rows look like:
 - **taxid** is the associated NCBI taxid
 - **name** is the name of the taxon
 - **rank** is his rank
-- **superkingdom**,**kingdom**,**phylum** are the ordered ranks of the full lineage associated to each taxid. 
+- **superkingdom**,**kingdom**,**phylum**, **...** are the ordered ranks of the full lineage associated to each taxid, going towards the deepest observed taxid in the table. 
 
 The function above also produces a tree in Newick format containing the taxids present in the table as well as all taxids associated to all the nodes in the taxonomic tree. 
 
