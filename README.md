@@ -94,7 +94,9 @@ The following improvements are planned for future releases:
 The script uses the following external resources:
 
 NCBI eutils API (https://www.ncbi.nlm.nih.gov/books/NBK25500/)
+
 NCBI taxonomy database (https://www.ncbi.nlm.nih.gov/taxonomy)
+
 Taxallnomy website (http://bioinfo.icb.ufmg.br/taxallnomy/) - to get the ordered list of ranks used in the output table.
 
 ___
