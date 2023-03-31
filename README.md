@@ -34,6 +34,12 @@ The script requires Python 3 and the following modules:
 - `pandas`
 - `ete3`
 
+All these modules can be easily installed with pip: 
+```shell
+pip install module_name
+```
+
+
 ## Workflow
 
 The script proceeds in two (optionnaly three) steps:
