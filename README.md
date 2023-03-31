@@ -52,12 +52,27 @@ The script proceeds in two (optionnaly three) steps:
 An example file `example-acc` is provided. 
 It contains 2132 *GI numbers* that can easily be retrieved in the Protein NCBI database.
 
-Here is how the `acc2taxo.py` script can be called in order to  (i) query the **protein** database (ii) retrieve the NCBI taxonomic classification of each accession number, (iii) remove the empty columns, (iv) save the table to a file called `acc-results.csv`, (v) get the associated taxonomy tree, and (vi) save the tree to `out.tre`: 
+Calling it as follows: 
 
 ```shell
 python3 acc2taxo.py -i example-acc -o acc-results.csv -db protein -t out.tre --clean
 ```
+Generates a table, whose first columns and rows look like: 
 
+| acc         | taxid | name                         | rank    | superkingdom | kingdom       | phylum           | ... |
+|-------------|-------|------------------------------|---------|--------------|---------------|------------------|-----|
+| NP_041191.1 | 58103 | Leishmania RNA virus 1 - 1   | no rank | Viruses      | Orthornavirae | Duplornaviricota | ... |
+| NP_056808.1 | 12238 | Odontoglossum ringspot virus | species | Viruses      | Orthornavirae | Kitrinoviricota  | ... |
+| NP_056810.1 | 12238 | Odontoglossum ringspot virus | species | Viruses      | Orthornavirae | Kitrinoviricota  | ... |
+| ...         | ...   | ...                          | ...     | ...          | ...           | ...              | ... |
+
+- **acc** is the identifier as given in the input file
+- **taxid** is the associated NCBI taxid
+- **name** is the name of the taxon
+- **rank** is his rank
+- **superkingdom**,**kingdom**,**phylum** are the ordered ranks of the full lineage associated to each taxid. 
+
+The function above also produces a tree in Newick format containing the taxids present in the table as well as all taxids associated to all the nodes in the taxonomic tree. 
 
 
 ## Planned Improvements
@@ -82,3 +97,5 @@ Taxallnomy website (http://bioinfo.icb.ufmg.br/taxallnomy/) - to get the ordered
 ___
 
 This script was written by DM de Vienne in March 2023. 
+
+If you see a bug, please correct it yourself, :wink: 
