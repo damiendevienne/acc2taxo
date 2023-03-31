@@ -24,7 +24,6 @@ The following options are available:
 - `--verbose`: enable verbose mode (default)
 - `-v/--version`: print the version of the script
 
-
 ## Requirements
 
 The script requires Python 3 and the following modules:
@@ -44,11 +43,21 @@ pip install module_name
 
 The script proceeds in two (optionnaly three) steps:
 
-1. Get taxids from accession numbers: reads the input file, retrieves the taxid associated with each accession number from the NCBI eutils API. Note that the script automatically pauses for 0.5 seconds between each eutils API query to comply with NCBI's requirements (max 3 queries/second without a key).
+1. Get taxids from accession numbers: reads the input file, retrieves the taxid associated with each accession number from the NCBI eutils API, querying the desired database with chunks of 200 IDs. Default database is set to **protein**. For a list of databases, see https://www.ncbi.nlm.nih.gov/books/NBK25497/table/chapter2.T._entrez_unique_identifiers_ui/?report=objectonly. Note that the script automatically pauses for 0.5 seconds between each eutils API query to comply with NCBI's requirements (max 3 queries/second without a key).
 2. Get infos from taxids: retrieves the lineage and names of each taxid from the NCBI taxonomy database.
 3. (optional) Get the tree from the list of unique taxids retrieved in step 2.
 
 ## Example
+
+An example file `example-acc` is provided. 
+It contains 2132 *GI numbers* that can easily be retrieved in the Protein NCBI database.
+
+Here is how the `acc2taxo.py` script can be called in order to  (i) query the **protein** database (ii) retrieve the NCBI taxonomic classification of each accession number, (iii) remove the empty columns, (iv) save the table to a file called `acc-results.csv`, (v) get the associated taxonomy tree, and (vi) save the tree to `out.tre`: 
+
+```shell
+python3 acc2taxo.py -i example-acc -o acc-results.csv -db protein -t out.tre --clean
+```
+
 
 
 ## Planned Improvements
