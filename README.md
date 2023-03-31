@@ -43,7 +43,7 @@ pip install module_name
 
 The script proceeds in two (optionnaly three) steps:
 
-1. Get taxids from accession numbers: reads the input file, retrieves the taxid associated with each accession number from the NCBI eutils API, querying the desired database with chunks of 200 IDs. Default database is set to **protein**. For a list of databases, see https://www.ncbi.nlm.nih.gov/books/NBK25497/table/chapter2.T._entrez_unique_identifiers_ui/?report=objectonly. Note that the script automatically pauses for 0.5 seconds between each eutils API query to comply with NCBI's requirements (max 3 queries/second without a key).
+1. Get taxids from accession numbers: reads the input file, retrieves the taxid associated with each accession number from the NCBI eutils API, querying the desired database with chunks of 200 IDs. Default database is set to **protein**. For a list of databases, see https://www.ncbi.nlm.nih.gov/books/NBK25497/table/chapter2.T._entrez_unique_identifiers_ui/?report=objectonly. Note that the script automatically pauses for 0.34 seconds between each eutils API query to comply with NCBI's requirements (max 3 queries/second without a key).
 2. Get infos from taxids: retrieves the lineage and names of each taxid from the NCBI taxonomy database.
 3. (optional) Get the tree from the list of unique taxids retrieved in step 2.
 
