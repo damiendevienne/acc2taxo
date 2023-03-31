@@ -59,12 +59,12 @@ python3 acc2taxo.py -i example-acc -o acc-results.csv -db protein -t out.tre --c
 ```
 Generates a table, whose first columns and rows look like: 
 
-| acc         | taxid | name                         | rank    | superkingdom | kingdom       | phylum           | ... |
-|-------------|-------|------------------------------|---------|--------------|---------------|------------------|-----|
-| NP_041191.1 | 58103 | Leishmania RNA virus 1 - 1   | no rank | Viruses      | Orthornavirae | Duplornaviricota | ... |
-| NP_056808.1 | 12238 | Odontoglossum ringspot virus | species | Viruses      | Orthornavirae | Kitrinoviricota  | ... |
-| NP_056810.1 | 12238 | Odontoglossum ringspot virus | species | Viruses      | Orthornavirae | Kitrinoviricota  | ... |
-| ...         | ...   | ...                          | ...     | ...          | ...           | ...              | ... |
+| acc         | taxid | name                         | rank    | superkingdom | kingdom       | phylum           | subphylum | class             | subclass | infraclass | cohort | order           | ... |
+|-------------|-------|------------------------------|---------|--------------|---------------|------------------|-----------|-------------------|----------|------------|--------|-----------------|-----|
+| NP_041191.1 | 58103 | Leishmania RNA virus 1 - 1   | no rank | Viruses      | Orthornavirae | Duplornaviricota |           | Chrymotiviricetes |          |            |        | Ghabrivirales   | ... |
+| NP_056808.1 | 12238 | Odontoglossum ringspot virus | species | Viruses      | Orthornavirae | Kitrinoviricota  |           | Alsuviricetes     |          |            |        | Martellivirales | ... |
+| NP_056810.1 | 12238 | Odontoglossum ringspot virus | species | Viruses      | Orthornavirae | Kitrinoviricota  |           | Alsuviricetes     |          |            |        | Martellivirales | ... |
+| ...         | ...   | ...                          | ...     | ...          | ...           | ...              | ...       | ...               | ...      | ...        | ...    | ...             | ... |
 
 - **acc** is the identifier as given in the input file
 - **taxid** is the associated NCBI taxid
